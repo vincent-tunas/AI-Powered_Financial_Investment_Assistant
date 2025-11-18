@@ -80,7 +80,7 @@ indicator analysis module, and LLM reasoning engine before producing insights in
   <img src="project_report/finance-AI-Workflow.jpg" alt="Data Flow Diagram" width="700"/>
 </p>
 
-1. User accesses the Streamlit app.
+1. User interacts with the Streamlit app. 
 
 2. App calls the Sectors API to fetch stock price and volume data.
 
