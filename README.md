@@ -71,8 +71,6 @@ indicator analysis module, and LLM reasoning engine before producing insights in
 <p align="center">
   <img src="project_report/UI_UX/finance-AI-Workflow.jpg" alt="Data Flow Diagram" width="700"/>
 </p>
-![Data Flow Diagram](project_report/UI_UX/finance-AI-Workflow.jpg)
-
 
 1. User accesses the Streamlit app.
 
