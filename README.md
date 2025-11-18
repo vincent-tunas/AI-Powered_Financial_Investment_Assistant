@@ -93,3 +93,33 @@ indicator analysis module, and LLM reasoning engine before producing insights in
 
 5. provide the Results and buy/sell indicators are shown in an interactive dashboard.
 
+## Reflection
+
+In this project, I generate an AI agents that works with financial tools, integrated with real-time financial data from the Sectors API and visualizing its result using Matplotlib. I explored how the Simple Moving Average (SMA) and Volume Breakout indicators can help analyze stock performance and support better decision-making for users.
+
+One of the main challenges was adapting the SMA and Volume Breakout formulas to process daily transaction data accurately within the application and implementing the AI explaination module and signal generation feature to provide the system with the  ability to provide clear, beginner-friendly interpretations of market movements to inexperienced users.
+
+## Future Improvements and Patches:
+- A user prompt that enables users to explain its use case, his current situation on how they are managing their stocks in order to provide a more accurate buy/watch/sell signals from the AI.
+
+- Create a stochastic oscillator (a momentum indicator that measures the speed and direction of the price movements by comparing stock's current closing price to its price range). This enables detection of stock price moved up too quickly and also potential trend reversals for the user.
+
+- Data Session Persistance: Save the data of user watchlist between sessions
+
+- A real-time monitoring system to constantly keep users updated with the stock analysis and performance.
+
+### References
+
+- Sectors API Documentation
+
+- Investopedia: Technical Indicators: Simple Moving Average
+
+- Investopedia. “Volume Breakout.”
+
+- TradingView Education. “Volume Analysis and Breakouts.”
+
+- Streamlit Documentation
+
+- OpenAI / Groq LLM APIs
+
+- Financial AI Algorithma Week 7: 07-ai-applications-main/tools.py
