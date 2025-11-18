@@ -1,43 +1,17 @@
 # AI-Powered Stock Analysis Dashboard 📊
 
-An interactive Streamlit application that helps modern retail investors interpret technical indicators like Simple Moving Averages (SMA), Volume Breakouts, and potential Order Blocks using real-time stock data and LLM-based explanations.
+### 1. Purpose:
+ Modern retail investors struggle to interpret multiple technical indicators across various stocks in real-time. Manual analysis of signals like Simple Moving Average (SMA), Volume Breakouts and Order Blocks requires both experience and time.
+This project addresses that by automating the analysis and providing clear, AI-assisted buy/sell notifications through an interactive Streamlit web application.
+
+### 2. Objectives:
+
+This application integrates real-time financial data from the sectors API to compute the simple moving Average, Volume Breakouts, detect the potential order blocks (bullish/bearish zones) and provide automated signal interpretation whether to buy/ watch/ sell the stock using LLM reasoning.
+This insights are visualized through an interactive streamlit dashboard and notifies the users with the visual cues and explanations for each of the signals
 
 ---
 
-## 🧩 Project Overview
-
-Manual stock analysis can be time-consuming and confusing, especially for beginners who must track multiple indicators across many stocks.
-
-This project automates that workflow by:
-- Fetching real-time financial data from the Sectors API
-- Calculating 5-day and 20-day SMAs and Volume Breakouts
-- Highlighting potential bullish/bearish zones (order blocks)
-- Using an AI agent to explain signals in simple language (buy / watch / sell)
-
----
-
-## ✨ Key Features
-
-- 📈 **SMA Analysis**  
-  - 5-day SMA for short-term trend  
-  - 20-day SMA for medium-term trend  
-
-- 📊 **Volume Breakout Detection**  
-  - Compares current volume with 20-day average  
-  - Flags strong interest periods that may confirm price moves
-
-- 🧠 **AI Financial Assistant**  
-  - Uses LLM reasoning to generate human-readable explanations  
-  - Interprets SMA trends and volume behavior (no personal financial advice)
-
-- 🖥️ **Interactive Streamlit Dashboard**  
-  - Select stock and date range  
-  - Visualize price, SMA, and volume in charts  
-  - See signal (buy / watch / sell) with explanation
-
----
-
-## 🏗 Tech Stack
+## Tech Stack
 
 - **Python**
 - **Streamlit**
