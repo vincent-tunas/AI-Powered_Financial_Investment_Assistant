@@ -15,14 +15,14 @@ This project automates that workflow by:
 - Using an AI agent to explain signals in simple language (buy / watch / sell)
 
 ---
-**Simple Moving Average (SMA)**: The simple moving average shows the average price of a stock over a certain number of days.
-5-day SMA : Calculates the average closing price over the past 5 trading days. It is used to capture short-term trend of the stocks and enables user's to detect early changes in stock price<br>
-- if the prices goes above the 5-day SMA, it often signals users to buy the stock and give users optimism regarding the increase in the stocks market performance.
-- If the price falls below the 5-day SMA, it often indicates a short term fall in the stock's price. The user can have the choice to buy the stock in its short term current low price or sell the stock.
-20-day SMA: 
-Calculates the average closing price over the past 20 trading days. This is used to identify the long term trend in the stock.
-- when the 5-day sma crosses above the 20-day sma, it indicates a bullish market crossover and indicates a strong potential buy signal
-- When the 5-day sma crosses below the 20-day sma, it indicates a bearish market crossover and provides a sell signal
+**Simple Moving Average (SMA)**: The simple moving average shows the average price of a stock over a certain number of days.<br>
+- 5-day SMA : Calculates the average closing price over the past 5 trading days. It is used to capture short-term trend of the stocks and enables user's to detect early changes in stock price<br>
+  if the prices goes above the 5-day SMA, it often signals users to buy the stock and give users optimism regarding the increase in the stocks market performance.
+  If the price falls below the 5-day SMA, it often indicates a short term fall in the stock's price. The user can have the choice to buy the stock in its short term current low price or sell the stock.<br>
+- 20-day SMA: <br>
+Calculates the average closing price over the past 20 trading days. This is used to identify the long term trend in the stock.<br>
+  when the 5-day sma crosses above the 20-day sma, it indicates a bullish market crossover and indicates a strong potential buy signal<br>
+  When the 5-day sma crosses below the 20-day sma, it indicates a bearish market crossover and provides a sell signal<br>
 
 The purpose it to enable users to identify the trend reversals and see the momentum. The AI helps users with providing advice based on the Simple moving average, however it is still the user's choice whether to buy or sell the stocks. A short-term fall in the stock price or a bearish market can also be an opportunity to buy the stock in low price and wait for the stock price to increase. While an increase in the stock's market performance or a bullish market can also indicates the user to sell their stocks in order to gain profit. It is up to the user to make the decision on what to do with the information provided and they don't always have to follow the signals provided by the AI.
 
