@@ -11,7 +11,7 @@ This insights are visualized through an interactive streamlit dashboard and noti
 
 ---
 
-## Tech Stack
+## 3. Tech Stack
 
 - **Python**
 - **Streamlit**
@@ -21,7 +21,7 @@ This insights are visualized through an interactive streamlit dashboard and noti
 - **Groq / LLM** (for AI explanations)
 
 ---
-### System design:
+### 4. System design:
     
 LLM Usage Strategy:
 The application integrates a Large Language Model (LLM) through an API-based prompt-driven approach using Groq Cloud. 
