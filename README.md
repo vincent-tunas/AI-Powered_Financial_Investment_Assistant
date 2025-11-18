@@ -16,10 +16,10 @@ This project automates that workflow by:
 
 ---
 **Simple Moving Average (SMA)**: The simple moving average shows the average price of a stock over a certain number of days.
-1. 5-day SMA : Calculates the average closing price over the past 5 trading days. It is used to capture short-term trend of the stocks and enables user's to detect early changes in stock price<br>
+5-day SMA : Calculates the average closing price over the past 5 trading days. It is used to capture short-term trend of the stocks and enables user's to detect early changes in stock price<br>
 - if the prices goes above the 5-day SMA, it often signals users to buy the stock and give users optimism regarding the increase in the stocks market performance.
 - If the price falls below the 5-day SMA, it often indicates a short term fall in the stock's price. The user can have the choice to buy the stock in its short term current low price or sell the stock.
-2. 20-day SMA: 
+20-day SMA: 
 Calculates the average closing price over the past 20 trading days. This is used to identify the long term trend in the stock.
 - when the 5-day sma crosses above the 20-day sma, it indicates a bullish market crossover and indicates a strong potential buy signal
 - When the 5-day sma crosses below the 20-day sma, it indicates a bearish market crossover and provides a sell signal
