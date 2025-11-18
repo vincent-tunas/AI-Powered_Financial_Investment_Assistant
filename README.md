@@ -35,6 +35,11 @@ Check each day, if the current day's volume is 50% higher than the 20-day averag
   <img src="project_report/UI_UX/analysis_sma_volume_breakout.jpg" alt="Homepage" width="700"/>
 </p>
 
+AI generates its insight to the user and signals the user based on its analysis.
+
+<p align="left">
+  <img src="UI_UX/AI_Insights.jpg" alt="Homepage" width="700"/>
+</p>
 
 ## ✨ Key Features
 
