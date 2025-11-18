@@ -24,10 +24,6 @@ Calculates the average closing price over the past 20 trading days. This is used
   when the 5-day sma crosses above the 20-day sma, it indicates a bullish market crossover and indicates a strong potential buy signal<br>
   When the 5-day sma crosses below the 20-day sma, it indicates a bearish market crossover and provides a sell signal<br>
 
-The purpose it to enable users to identify the trend reversals and see the momentum. The AI helps users with providing advice based on the Simple moving average, however it is still the user's choice whether to buy or sell the stocks. A short-term fall in the stock price or a bearish market can also be an opportunity to buy the stock in low price and wait for the stock price to increase. While an increase in the stock's market performance or a bullish market can also indicates the user to sell their stocks in order to gain profit. It is up to the user to make the decision on what to do with the information provided and they don't always have to follow the signals provided by the AI.
-
-
-
 **Volume breakout**: check the volume data of each day and calculate the 20-day average trading volume.<br>
 Check each day, if the current day's volume is 50% higher than the 20-day average volume, mark it as a volume breakout, a breakout indicates a strong market interest in the stock, which can lead to the price movements either going upwards or downwards.
 
@@ -40,6 +36,9 @@ AI generates its insight to the user and signals the user based on its analysis.
 <p align="left">
   <img src="project_report/UI_UX/AI_Insights.jpg" alt="AI_Insight" width="700"/>
 </p>
+
+The purpose it to enable users to identify the trend reversals and see the momentum. The AI helps users with providing advice based on the Simple moving average, however it is still the user's choice whether to buy or sell the stocks. A short-term fall in the stock price or a bearish market can also be an opportunity to buy the stock in low price and wait for the stock price to increase. While an increase in the stock's market performance or a bullish market can also indicates the user to sell their stocks in order to gain profit. It is up to the user to make the decision on what to do with the information provided and they don't always have to follow the signals provided by the AI.
+
 
 ## ✨ Key Features
 
