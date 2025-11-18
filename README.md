@@ -32,13 +32,13 @@ The purpose it to enable users to identify the trend reversals and see the momen
 Check each day, if the current day's volume is 50% higher than the 20-day average volume, mark it as a volume breakout, a breakout indicates a strong market interest in the stock, which can lead to the price movements either going upwards or downwards.
 
 <p align="left">
-  <img src="project_report/UI_UX/analysis_sma_volume_breakout.jpg" alt="Homepage" width="700"/>
+  <img src="project_report/UI_UX/analysis_sma_volume_breakout.jpg" alt="Analysis" width="700"/>
 </p>
 
 AI generates its insight to the user and signals the user based on its analysis.
 
 <p align="left">
-  <img src="UI_UX/AI_Insights.jpg" alt="Homepage" width="700"/>
+  <img src="project_report/UI_UX/AI_Insights.jpg" alt="AI_Insight" width="700"/>
 </p>
 
 ## ✨ Key Features
