@@ -69,7 +69,7 @@ The diagram below illustrates how data moves from the user input through the Sec
 indicator analysis module, and LLM reasoning engine before producing insights in the Streamlit UI.
 
 <p align="center">
-  <img src="project_report/UI_UX/finance-AI-Workflow.jpg" alt="Data Flow Diagram" width="700"/>
+  <img src="project_report/finance-AI-Workflow.jpg" alt="Data Flow Diagram" width="700"/>
 </p>
 
 1. User accesses the Streamlit app.
