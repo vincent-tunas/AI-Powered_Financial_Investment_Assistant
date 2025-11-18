@@ -409,3 +409,16 @@ if st.session_state.watchlist:
 
 else:
     st.info("Please add tickers to your watchlist to analyze their trends.")
+
+# ------------------------------------------------------------
+#  Project: AI-Powered Financial Analysis Dashboard
+#  Author : Vincenntius Patrick Tunas
+#  Created: 2025
+#  
+#  Description:
+#    This code is part of a personal project developed by 
+#    Vincenntius Patrick Tunas. Any form of reproduction or 
+#    redistribution without proper credit is not allowed.
+#
+#  Copyright © 2025 Vincenntius Patrick Tunas
+# ------------------------------------------------------------
