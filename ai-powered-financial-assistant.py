@@ -239,7 +239,7 @@ user_goal = f"Goal type: {goal_type}. Details: {goal_details}"
 
 #-------------------- Simple Moving Average (SMA) and Volume Breakout Implementation --------------------#
 
-st.header("📊 SMA and Volume Breakout Analysis")
+st.header("📊 SMA, Volume Breakout, Stochastic Oscillator and Analysis")
 
 #check if there are stock codes in the user's watchlist, if there are, provide date input for the user to choose the start date and end date for the analysis
 
