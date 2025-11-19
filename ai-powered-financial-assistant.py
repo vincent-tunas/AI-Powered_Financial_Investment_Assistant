@@ -231,7 +231,7 @@ goal_type = st.selectbox(
 
 # ask the user if they have any specific details about their investment goal
 goal_details = st.text_input(
-    "Describe in more details your investment goal for this stock",
+    "Describe in more details your investment goal for this stock.",
     placeholder="e.g. I want to take profit when the stock is near recent highs."
 )
 
@@ -490,5 +490,6 @@ if st.session_state.watchlist:
 
 else:
     st.info("Please add tickers to your watchlist to analyze their trends.")
+
 
 
