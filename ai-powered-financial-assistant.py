@@ -79,33 +79,71 @@ def ai_financial_assistant():
             (
                 "system",
                 f"""
-                    You are an AI financial analysis assistant integrated into a Streamlit stock analytics application. 
-                    You have access to stock data through the Sectors API and can analyze metrics such as 
-                    Simple Moving Average (SMA), price trends, and volume breakouts.
+                    You are an AI Financial Analysis Assistant embedded inside a Streamlit stock analytics application. 
+                    You have access to stock market data via the Sectors API and you interpret metrics such as:
 
-                    Your primary goal is to help users understand stock market behavior and provide 
-                    clear, data-driven insights without offering personal financial advice.
+                    - Simple Moving Averages (SMA 5 & SMA 20)
+                    - Volume Breakouts (current volume vs 20-day average)
+                    - Stochastic Oscillator (%K and %D)
+                    - Price trends and momentum patterns
+                    - User-specified investment goals (e.g., long-term accumulation, short-term swing, risk-averse, etc.)
 
-                    When analyzing data:
-                    1. Interpret the stock’s performance using key metrics:
-                    - Simple Moving Average (SMA)
-                    - Volume breakout patterns
-                    - Price momentum (bullish/bearish trends)
-                    2. Explain your reasoning in simple and educational terms, suitable for non-expert users.
-                    3. Summarize the current signal clearly as one of:
-                    - **BUY** → bullish trend, strong momentum, or breakout above SMA
-                    - **WATCH** → sideways trend, uncertain signals, or nearing breakout
-                    - **SELL** → bearish trend, breakdown below SMA, or volume decline
-                    4. Always back your signal with numeric evidence and concise justification.
+                    Your purpose is to help users understand what is happening in the market **in clear, educational language**, 
+                    not to provide personalized financial advice or guaranteed predictions.
 
-                    Tone and style:
-                    - Be concise, confident, and factual.
-                    - Avoid financial jargon when possible.
-                    - Use markdown formatting to improve readability (e.g., bold terms, bullet points, short paragraphs).
+                    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                    ### 🔍 **How You Must Analyze the Data**
+                    When evaluating a stock, always consider:
 
-                    Avoid making guaranteed predictions or giving personalized investment recommendations.
-                    Instead, focus on analyzing data, identifying patterns, and providing educational explanations.
-                Today's date is {datetime.today().strftime("%Y-%m-%d")}
+                    1. **Simple Moving Averages (SMA)**
+                    - SMA crossovers (e.g., price > SMA 5 > SMA 20 indicates bullish momentum)
+                    - Price relative to its SMAs (above = strength, below = weakness)
+
+                    2. **Volume Breakout**
+                    - Compare current volume vs. 20-day average
+                    - A breakout suggests increasing market participation
+                    - Amplifies the strength of bullish or bearish signals
+
+                    3. **Stochastic Oscillator**
+                    - %K and %D values:
+                        • Above 80 → overbought  
+                        • Below 20 → oversold  
+                        • Crossovers indicate momentum shifts  
+                    - Use stochastic to refine the SMA-based signal (e.g., “trend is bullish, but stochastic indicates overbought, proceed cautiously”).
+
+                    4. **Price Momentum**
+                    - Whether recent price action shows strength, weakness, or consolidation
+
+                    5. **User's Investment Goal**
+                    - Align tone and explanation with their style:
+                        • Short-term traders care about momentum and overbought/oversold  
+                        • Long-term investors care about sustained trends and volume confirmation  
+                        • Risk-averse users need cautionary notes  
+
+                    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                    ### 🧠 **How You Should Communicate**
+                    - Explain insights clearly and simply.
+                    - Avoid heavy jargon unless necessary.
+                    - Focus on **education**, not prediction.
+                    - Use short paragraphs, bullet points, and bold text for clarity.
+                    - Always justify the final signal (Buy / Watch / Sell) with:
+                    • Numeric values  
+                    • Technical indicator interpretation  
+                    • A logical chain of reasoning  
+
+                    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                    ### 🎯 **Final Output Requirements**
+                    Summarize the current signal as exactly one of:
+
+                    - **BUY** → bullish trend, strong momentum, breakout above SMA, positive stochastic confirmation  
+                    - **WATCH** → sideways trend, uncertain signals, mixed indicators, or nearing breakout  
+                    - **SELL** → bearish trend, breakdown below SMA, weak momentum, or negative volume signal  
+
+                    Then provide:
+                    - A short explanation (2–4 paragraphs max)
+                    - Bullet points referencing actual numeric values
+                    - Mention any conflicting or supporting signals (e.g., “uptrend but overbought”)
+
                 """
             ),
             MessagesPlaceholder(variable_name="history"),
@@ -182,69 +220,22 @@ if st.session_state.watchlist:
 else:
     st.warning("Please add at least one stock ticker to start monitoring.")
 
-#---------Data Visualization of the user's watchlist---------#
+#--------------------User's Investment Goals---------------------#
+st.header("🎯 Your Investment Goals")
 
-#display the header 'daily transaction data visualization'
-st.header("📊 Daily Transaction Data Visualization")
+# ask the user about what best describes their investment goal
+goal_type = st.selectbox(
+    "What best describes your goal?",
+    ["Short-term trading", "Swing trading (weeks–months)", "Long-term investing (years)", "Income/dividends", "Capital preservation"],
+)
 
-#check the user's watchlist, if there are stock codes in the watchlist, provide date input for the user to choose the start date and end date for the data visualization
-if st.session_state.watchlist:
-    start_date = st.date_input("Start Date", datetime(2024, 1, 1))
-    end_date = st.date_input("End Date", datetime.today())
+# ask the user if they have any specific details about their investment goal
+goal_details = st.text_input(
+    "Anything more specific? (optional)",
+    placeholder="e.g. I want to take profit when the stock is near recent highs."
+)
 
-    #create a button to fetch and visualize the data
-    if st.button("📈 Fetch & Visualize Data"):
-        #for each stock in the watchlist, fetch the daily transaction data from the sectors api between the user given start date and end date
-        for stock in st.session_state.watchlist:
-            st.subheader(f"Stock: {stock}")
-
-            # Call the tool get_stock_daily_transaction to retrieve the data user requires
-            data = get_stock_daily_transaction.invoke({"stock": stock,
-                                        "start_date": start_date.strftime("%Y-%m-%d"),
-                                        "end_date": end_date.strftime("%Y-%m-%d"),
-                                    })
-
-
-            # if the api returns an error, display the error message and skip to the next stock
-            if "error" in data:
-                st.error(f"Error fetching data for {stock}: {data['error']}")
-                continue
-
-             # Ensure the DataFrame is not empty
-            df = pd.DataFrame(data)
-            if df.empty:
-                st.warning(f"No data found for {stock}.")
-                continue
-
-            # Convert the date column into date format
-            if 'date' in df.columns:
-                df['date'] = pd.to_datetime(df['date'])
-
-            # Show first few rows of the data
-            st.dataframe(df.head())
-
-            # Plot closing price trend
-            if all(col in df.columns for col in ['date', 'close']):
-                fig, ax1 = plt.subplots(figsize=(8, 4))
-                ax1.plot(df['date'], df['close'], label='Close Price')
-                ax1.set_xlabel('Date')
-                ax1.set_ylabel('Close Price')
-                ax1.set_title(f'{stock} - Closing Price Trend')
-                ax1.legend()
-                st.pyplot(fig)
-
-            # Plot trading volume
-            if 'volume' in df.columns:
-                fig2, ax2 = plt.subplots(figsize=(8, 3))
-                ax2.bar(df['date'], df['volume'], color='orange', alpha=0.6)
-                ax2.set_xlabel('Date')
-                ax2.set_ylabel('Volume')
-                ax2.set_title(f'{stock} - Daily Volume')
-                st.pyplot(fig2)
-#If Watchlist Is Empty
-else:
-    st.info("Add some tickers in your watchlist to visualize their daily data.")
-
+user_goal = f"Goal type: {goal_type}. Details: {goal_details}"
 
 #-------------------- Simple Moving Average (SMA) and Volume Breakout Implementation --------------------#
 
@@ -338,9 +329,87 @@ if st.session_state.watchlist:
             st.markdown(f"**Signal:** {signal}")
             st.caption(reason)
 
+            #-------------------- Stochastic Oscillator --------------------#
+
+            # --- Detect Volume Breakouts that occurs over the last 20 days---
+            if "volume" in df.columns:
+                df["Avg_Vol_20"] = df["volume"].rolling(window=20, min_periods=1).mean()
+                df["Volume_Breakout"] = df["volume"] > 1.5 * df["Avg_Vol_20"]
+
+            # compute the Stochastic Oscillator (%K and %D) over the period of 14 days
+            # the formula used to calculate the Stochastic Oscillator is as follows:
+            #       %K = ((Close - Lowest Low(14)) / (Highest High(14) - Lowest Low(14))) * 100
+            #       %D = 3-period SMA of %K
+            # %k is the main line that shows the current closing price in relation to the high-low range over a set period in the stochastic oscillator
+
+            #with the close column of df,  compute the lowest low stock price and highest high stock priceover the past 14 days and set the data in a new column of the df.
+            # --- Ensure close is numeric ---
+            if "close" in df.columns:
+                df["close"] = pd.to_numeric(df["close"], errors="coerce")
+
+                # --- Stochastic Oscillator (14, 3) using close-only method ---
+                df["Lowest_14"] = df["close"].rolling(window=14, min_periods=1).min()
+                df["Highest_14"] = df["close"].rolling(window=14, min_periods=1).max()
+
+                # Avoid division by zero
+                denom = df["Highest_14"] - df["Lowest_14"]
+                denom = denom.replace(0, pd.NA)
+
+                df["Stoch_%K"] = ((df["close"] - df["Lowest_14"]) / denom) * 100
+
+                # Make sure %K is numeric for rolling()
+                df["Stoch_%K"] = pd.to_numeric(df["Stoch_%K"], errors="coerce")
+
+                # %D = 3-period SMA of %K
+                df["Stoch_%D"] = df["Stoch_%K"].rolling(window=3, min_periods=1).mean()
+
+            else:
+                st.info(f"{stock}: Stochastic oscillator requires 'high', 'low', and 'close' columns.")
+
+            #the default stoch_signal is "Watch" and reason_stoch is "No major movement yet."
+            stoch_signal = "📊 Watch"
+            reason_stoch = "No major movement yet."
+            # Use the stochastic oscillator to identify overbought and oversold conditions
+
+            if "close" in df.columns:
+                #create a new dataframe variable 'latest' to store the latest row of the dataframe
+                latest = df.iloc[-1]
+                #if the current closing price is above both SMAs, it indicates an uptrend, hence a Buy signal
+                if latest["close"] > latest["SMA_5"] > latest["SMA_20"]:
+                    stoch_signal = "🟢 Buy"
+                    stoch_reason = "Price is above both SMAs — uptrend detected."
+                #if the current closing price is below both SMAs, it indicates a downtrend, hence a Sell signal
+                elif latest["close"] < latest["SMA_5"] < latest["SMA_20"]:
+                    stoch_signal = "🔴 Sell"
+                    stoch_reason = "Price is below both SMAs — downtrend detected."
+
+                # if a Volume breakout occured, it is a confidence boost in the signals
+                if "Volume_Breakout" in df.columns and latest["Volume_Breakout"]:
+                    reason += " Volume breakout confirms strong move."
+
+                # use the latest %K and %D values to determine overbought or oversold conditions
+                if latest["Stoch_%K"] > 80 and latest["Stoch_%D"] > 80:
+                    stoch_signal = "🔴 Sell"
+                    stoch_reason += " Stochastic oscillator indicates overbought conditions."
+                elif latest["Stoch_%K"] < 20 and latest["Stoch_%D"] < 20:
+                    stoch_signal = "🟢 Buy"
+                    stoch_reason += " Stochastic oscillator indicates oversold conditions."
+
+            #---plot the Stochastic Oscillator %K and %D over the period of time---#
+
+            if {"date", "Stoch_%K", "Stoch_%D"} <= set(df.columns):
+                            fig3, ax3 = plt.subplots(figsize=(8, 3))
+                            ax3.plot(df["date"], df["Stoch_%K"], label="%K (14)", linewidth=1.5)
+                            ax3.plot(df["date"], df["Stoch_%D"], label="%D (3)", linestyle="--")
+                            ax3.axhline(80, linestyle="--", linewidth=1, label="Overbought (80)")
+                            ax3.axhline(20, linestyle="--", linewidth=1, label="Oversold (20)")
+                            ax3.set_xlabel("Date")
+                            ax3.set_ylabel("Stochastic (%)")
+                            ax3.set_title(f"{stock} - Stochastic Oscillator (14, 3)")
+                            ax3.legend()
+                            st.pyplot(fig3)
+
 #------------------------- Use AI Agent for Explanation -----------------------------#
-            # Display the section title "AI Insight" in your Streamlit Dashboard
-            st.markdown("#### 🤖 AI Insight")
 
             # Initialize the Groq-based LLM financial agent to interpret the financial data and generate the reasonings
             finance_agent = ai_financial_assistant() 
@@ -348,10 +417,12 @@ if st.session_state.watchlist:
             # Create a System message to determine the AI Agent's behaviour and way of thinking during processing the response to us
             system_message = f"""
             You are an experienced financial analyst. Based on the following indicators,
-            explain why stock {stock} shows a **{signal}** signal.
-            Consider the relationships between price, SMA trends, and volume activity.
+            explain why stock {stock} shows a **{signal}** signal. 
+            
+            User's investment goal:
+            \"\"\"{user_goal or "No specific goal provided."}\"\"\"
 
-            Latest data:
+            Current stock context:
             - Date: {latest.get('date')}
             - Close: {latest.get('close')}
             - SMA_5: {latest.get('SMA_5')}
@@ -359,6 +430,13 @@ if st.session_state.watchlist:
             - Volume: {latest.get('volume')}
             - 20-day Avg Volume: {latest.get('Avg_Vol_20')}
             - Volume Breakout: {latest.get('Volume_Breakout')}
+            - Stoch %K (14): {latest.get('Stoch_%K')}
+            - Stoch %D (3): {latest.get('Stoch_%D')}
+
+            Explain based on the current stock context as well.
+
+            Use the user's investment goal to tailor your explanation and provide the best solution based on the user's specific needs.
+            Consider the relationships between price, SMA trends, volume activity and stochastic oscillator readings. 
             """
 
             # Run the explanation using the existing AI agent
@@ -367,9 +445,6 @@ if st.session_state.watchlist:
                     {"input": system_message},
                     config={"configurable": {"session_id": f"{stock}_analysis"}}
                 )
-
-            # Display the AI’s explanation
-            st.success(ai_response["output"])
 
             # --- Plot the closing Price trend over the chosen periods and the Simple moving Average ---
             # using the column 'date' and 'close' from the dataframe, create the plot
@@ -407,18 +482,12 @@ if st.session_state.watchlist:
             # --- show the recent stock data for users to inspect. ---
             st.dataframe(df.tail(10))
 
+            # Display the section title "AI Insight" in your Streamlit Dashboard
+            st.markdown("#### 🤖 AI Insight")
+
+            # Display the AI’s explanation
+            st.success(ai_response["output"])
+
 else:
     st.info("Please add tickers to your watchlist to analyze their trends.")
 
-# ------------------------------------------------------------
-#  Project: AI-Powered Financial Analysis Dashboard
-#  Author : Vincenntius Patrick Tunas
-#  Created: 2025
-#  
-#  Description:
-#    This code is part of a personal project developed by 
-#    Vincenntius Patrick Tunas. Any form of reproduction or 
-#    redistribution without proper credit is not allowed.
-#
-#  Copyright © 2025 Vincenntius Patrick Tunas
-# ------------------------------------------------------------
