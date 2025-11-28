@@ -1,4 +1,4 @@
-# AI-Powered Stock Analysis Dashboard 📊
+# AI-Powered Financial Investment Assistant 📊
 
 An interactive Streamlit application that helps modern retail investors interpret technical indicators like Simple Moving Averages (SMA), Volume Breakouts, and potential Order Blocks using real-time stock data and LLM-based explanations.
 
